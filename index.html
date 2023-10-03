@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>d.week5</title>
+	<style type="text/css">
+		.circle { position: absolute; left: 0; top: 0; }
+		.ment {position: absolute; width: 1000px}
+	</style>
+</head>
+<body>
+	<img class = "ment" src = "ment.png">
+
+
+	<script type="text/javascript">
+
+		// randomBH 함수 정의
+		function randomBH(min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+
+		
+
+		var a = ["circle1", "circle2", "circle3", "circle4", "circle5", "circle6", "circle7"];
+		var images = [];
+
+		// 이미지를 클릭할 때 호출되는 함수
+		function handleImageClick(event) {
+			// 클릭된 이미지를 숨김
+			event.target.style.display = "none";
+
+			// 모든 이미지가 숨겨졌을 때, 다시 보이도록 설정
+			if (images.every(img => img.style.display === "none")) {
+				images.forEach(img => img.style.display = "block");
+			}
+		}
+
+		for (var i = 0; i < 30; i++) {
+			var t = document.createElement("img");
+			t.src = a[randomBH(0, 6)] + ".png";
+			t.className = "circle";
+			t.style.width = randomBH(20, 450) + "px";
+			t.style.height = "auto";
+			t.style.left = Math.random() * screen.availWidth + "px";
+			t.style.top = Math.random() * screen.availHeight + "px";
+
+			// 모든 이미지를 배열에 추가
+			images.push(t);
+
+			// 클릭 이벤트 리스너 추가
+			t.addEventListener("click", handleImageClick);
+
+			document.body.appendChild(t);
+		}
+		
+	</script>
+</body>
+</html>
